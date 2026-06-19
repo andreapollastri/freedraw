@@ -1,98 +1,99 @@
-export type ElementId = string
+export type ElementId = string;
 
-export type StrokeStyle = 'solid' | 'dashed' | 'dotted'
+export type StrokeStyle = "solid" | "dashed" | "dotted";
 
 export interface Point {
-  x: number
-  y: number
+  x: number;
+  y: number;
 }
 
 export interface Style {
-  stroke: string
-  fill: string
-  strokeWidth: number
-  strokeStyle: StrokeStyle
-  opacity: number
-  roundness: number
-  sloppiness: number
-  fontSize: number
-  fontFamily: string
-  textColor: string
-  textAlign: 'left' | 'center' | 'right'
+  stroke: string;
+  fill: string;
+  strokeWidth: number;
+  strokeStyle: StrokeStyle;
+  opacity: number;
+  roundness: number;
+  sloppiness: number;
+  fontSize: number;
+  fontFamily: string;
+  textColor: string;
+  textAlign: "left" | "center" | "right";
 }
 
 export interface Label {
-  text: string
-  align: 'left' | 'center' | 'right'
-  verticalAlign: 'top' | 'middle' | 'bottom'
+  text: string;
+  align: "left" | "center" | "right";
+  verticalAlign: "top" | "middle" | "bottom";
 }
 
 export interface BaseElement {
-  id: ElementId
-  type: string
-  x: number
-  y: number
-  width: number
-  height: number
-  rotation: number
-  style: Style
-  label?: Label
+  id: ElementId;
+  type: string;
+  x: number;
+  y: number;
+  width: number;
+  height: number;
+  rotation: number;
+  style: Style;
+  label?: Label;
 }
 
 export type ShapeType =
-  | 'rect'
-  | 'roundRect'
-  | 'ellipse'
-  | 'diamond'
-  | 'triangle'
-  | 'cylinder'
-  | 'hexagon'
-  | 'parallelogram'
-  | 'star'
-  | 'cloud'
-  | 'heart'
+  | "rect"
+  | "roundRect"
+  | "ellipse"
+  | "diamond"
+  | "triangle"
+  | "cylinder"
+  | "hexagon"
+  | "parallelogram"
+  | "star"
+  | "cloud"
+  | "heart"
+  | "lightning";
 
 export interface ShapeElement extends BaseElement {
-  type: ShapeType
+  type: ShapeType;
 }
 
 export interface StickyElement extends BaseElement {
-  type: 'sticky'
+  type: "sticky";
 }
 
 export interface TextElement extends BaseElement {
-  type: 'text'
-  text: string
+  type: "text";
+  text: string;
 }
 
 export interface FreedrawElement extends BaseElement {
-  type: 'freedraw'
-  points: Point[]
+  type: "freedraw";
+  points: Point[];
 }
 
 export interface ImageElement extends BaseElement {
-  type: 'image'
-  assetId: string
+  type: "image";
+  assetId: string;
 }
 
-export type Arrowhead = 'none' | 'triangle' | 'dot' | 'bar'
+export type Arrowhead = "none" | "triangle" | "dot" | "bar";
 
 export interface Binding {
-  elementId: ElementId
-  anchor: { nx: number; ny: number }
-  gap: number
-  side?: 'left' | 'right' | 'top' | 'bottom'
+  elementId: ElementId;
+  anchor: { nx: number; ny: number };
+  gap: number;
+  side?: "left" | "right" | "top" | "bottom";
 }
 
 export interface ArrowElement extends BaseElement {
-  type: 'arrow' | 'line'
-  points: Point[]
-  route: Point[]
-  start?: Binding
-  end?: Binding
-  startArrowhead: Arrowhead
-  endArrowhead: Arrowhead
-  routing: 'straight' | 'orthogonal' | 'curved'
+  type: "arrow" | "line";
+  points: Point[];
+  route: Point[];
+  start?: Binding;
+  end?: Binding;
+  startArrowhead: Arrowhead;
+  endArrowhead: Arrowhead;
+  routing: "straight" | "orthogonal" | "curved";
 }
 
 export type Element =
@@ -101,23 +102,23 @@ export type Element =
   | TextElement
   | FreedrawElement
   | ImageElement
-  | ArrowElement
+  | ArrowElement;
 
 export interface CameraState {
-  x: number
-  y: number
-  zoom: number
+  x: number;
+  y: number;
+  zoom: number;
 }
 
 export interface AppState {
-  schemaVersion: number
-  camera: CameraState
-  lastUsedStyle: Style
-  snapGuidesEnabled: boolean
+  schemaVersion: number;
+  camera: CameraState;
+  lastUsedStyle: Style;
+  snapGuidesEnabled: boolean;
 }
 
 export interface SceneSnapshot {
-  elements: Record<ElementId, Element>
-  order: ElementId[]
-  appState: AppState
+  elements: Record<ElementId, Element>;
+  order: ElementId[];
+  appState: AppState;
 }
